@@ -128,6 +128,18 @@ Future Gold tables may support supplier delivery, production, inventory, fulfill
 
 After the data products work and can be traced back to source records, a future assistant could search supply-chain evidence or prepare questions. It must not invent data, bypass quality checks, place orders, or change inventory.
 
+## Open-source and Research References
+
+These are design references for later implementation. Their presence here is not evidence that the current scaffold already uses them.
+
+- [Apache Spark documentation](https://spark.apache.org/docs/latest/) — DataFrame, SQL, and distributed-processing reference.
+- [Delta Lake documentation](https://docs.delta.io/latest/index.html) — table, transaction, history, and merge reference.
+- [Debezium documentation](https://debezium.io/documentation/) — source-change and CDC semantics reference.
+- [Great Expectations documentation](https://docs.greatexpectations.io/docs/) — open-source data-quality patterns.
+- [OpenLineage documentation](https://openlineage.io/docs/) — job, run, dataset, and lineage metadata reference.
+- [Lakehouse: A New Generation of Open Platforms](https://www.cidrdb.org/cidr2021/papers/cidr2021_paper17.pdf) — original lakehouse architecture paper.
+- [Open Supply Hub](https://opensupplyhub.org/) — open supply-chain facility data and identity reference.
+
 ## Case Study
 
 [Portfolio case study](https://souravkh-7.github.io/git_portfolio/projects/manufacturing-retail-supply-chain-lakehouse.html)
