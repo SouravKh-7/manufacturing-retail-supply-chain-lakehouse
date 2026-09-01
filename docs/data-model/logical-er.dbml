@@ -1,0 +1,93 @@
+// Proposed logical model. No physical tables are implemented yet.
+
+Table supplier {
+  supplier_id varchar [pk]
+  supplier_name varchar
+  status varchar
+}
+
+Table product {
+  product_id varchar [pk]
+  product_name varchar
+  category varchar
+}
+
+Table purchase_order {
+  purchase_order_id varchar [pk]
+  supplier_id varchar [not null]
+  order_date date
+  expected_date date
+  status varchar
+}
+
+Table purchase_order_line {
+  purchase_order_id varchar [not null]
+  line_number integer [not null]
+  product_id varchar [not null]
+  ordered_quantity decimal
+  unit_cost decimal
+
+  indexes {
+    (purchase_order_id, line_number) [pk]
+  }
+}
+
+Table manufacturing_order {
+  manufacturing_order_id varchar [pk]
+  product_id varchar [not null]
+  plant_id varchar [not null]
+  planned_quantity decimal
+  completed_quantity decimal
+  planned_start datetime
+  status varchar
+}
+
+Table inventory_movement {
+  movement_id varchar [pk]
+  product_id varchar [not null]
+  warehouse_id varchar [not null]
+  event_time datetime
+  movement_type varchar
+  quantity decimal
+}
+
+Table retail_order {
+  retail_order_id varchar [pk]
+  customer_id varchar [not null]
+  store_id varchar
+  order_time datetime
+  status varchar
+}
+
+Table retail_order_line {
+  retail_order_id varchar [not null]
+  line_number integer [not null]
+  product_id varchar [not null]
+  ordered_quantity decimal
+  unit_price decimal
+
+  indexes {
+    (retail_order_id, line_number) [pk]
+  }
+}
+
+Table product_return {
+  return_id varchar [pk]
+  retail_order_id varchar [not null]
+  line_number integer [not null]
+  product_id varchar [not null]
+  return_time datetime
+  return_quantity decimal
+  reason_code varchar
+}
+
+Ref: purchase_order.supplier_id > supplier.supplier_id
+Ref: purchase_order_line.purchase_order_id > purchase_order.purchase_order_id
+Ref: purchase_order_line.product_id > product.product_id
+Ref: manufacturing_order.product_id > product.product_id
+Ref: inventory_movement.product_id > product.product_id
+Ref: retail_order_line.retail_order_id > retail_order.retail_order_id
+Ref: retail_order_line.product_id > product.product_id
+Ref: product_return.(retail_order_id, line_number) > retail_order_line.(retail_order_id, line_number)
+Ref: product_return.product_id > product.product_id
+
