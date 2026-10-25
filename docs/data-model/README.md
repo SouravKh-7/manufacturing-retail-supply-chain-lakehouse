@@ -4,3 +4,5 @@ Proposed entities include supplier, product, plant, warehouse, store, customer, 
 
 - [Conceptual supply-chain ER model](conceptual-er.md)
 - [Proposed logical ER model](logical-er.dbml)
+- [Star and snowflake design, fact grains and dimension history](dimensional-design.md)
+- [Client delivery, compute decisions and operational support](../client-delivery-plan.md)
